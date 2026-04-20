@@ -1,14 +1,14 @@
-title: vicky-sol4nk1
+title: vicky-sol4nki
 description: "Walkthroughs, writeups and guides!"
-url: "https://vicky-sol4nk1.github.io"
+url: "https://vicky-sol4nki.github.io"
 baseurl: ""
 
 author:
-  name: YourHandle
-  github: https://github.com/yourusername
+  name: vicky-sol4nki
+  github: https://github.com/vicky-sol4nki
   linkedin: https://linkedin.com/in/vickysolanki
+  tryhackme: https://tryhackme.com/p/key101
 
-# Build settings
 markdown: kramdown
 permalink: /:title/
 paginate: 10
@@ -18,7 +18,6 @@ plugins:
   - jekyll-paginate
   - jekyll-feed
 
-# Tags collection
 defaults:
   - scope:
       path: ""
