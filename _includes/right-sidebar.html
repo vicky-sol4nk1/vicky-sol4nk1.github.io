@@ -1,0 +1,41 @@
+<aside class="right-sidebar">
+
+  <div class="rs-section">
+    <div class="rs-title">Recently Updated</div>
+    <ul class="recent-list">
+      {% assign recent = site.posts | limit: 5 %}
+      {% for post in recent %}
+      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="rs-section">
+    <div class="rs-title">Trending Tags</div>
+    <div class="tag-cloud">
+      {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
+      {% for tag in all_tags %}
+      <a href="{{ '/tags/#' | append: tag | relative_url }}" class="tag">{{ tag }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if page.toc %}
+  <div class="rs-section">
+    <div class="rs-title">Contents</div>
+    <ul class="contents-list">
+      {% for item in page.toc %}
+      <li>
+        <a href="#{{ item.id }}" {% if forloop.first %}class="active"{% endif %}>{{ item.title }}</a>
+        {% if item.children %}
+        {% for child in item.children %}
+        <a href="#{{ child.id }}" class="sub">{{ child.title }}</a>
+        {% endfor %}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+</aside>

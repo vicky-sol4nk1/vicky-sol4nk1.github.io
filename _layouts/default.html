@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<div class="page-wrapper">
+
+  {% include sidebar.html %}
+
+  <div class="content-area">
+
+    <div class="top-nav">
+      <div class="breadcrumb">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        {% if page.url != '/' %}
+        <span class="sep">›</span>
+        <span>{{ page.title }}</span>
+        {% endif %}
+      </div>
+      <div class="top-right">
+        <form class="search-form" action="{{ '/search/' | relative_url }}" method="get">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" name="q" placeholder="Search...">
+        </form>
+      </div>
+    </div>
+
+    {{ content }}
+
+  </div>
+</div>
+
+<script>
+  // Highlight active TOC item on scroll
+  const tocLinks = document.querySelectorAll('.contents-list a');
+  if (tocLinks.length) {
+    window.addEventListener('scroll', () => {
+      let current = '';
+      document.querySelectorAll('h2, h3').forEach(h => {
+        if (window.scrollY >= h.offsetTop - 80) current = h.id;
+      });
+      tocLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

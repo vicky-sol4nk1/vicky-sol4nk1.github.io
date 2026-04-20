@@ -1,0 +1,58 @@
+---
+layout: default
+---
+
+<div class="content-body">
+  <main class="main-content">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta-bar">Posted <strong>{{ page.date | date: "%b %d, %Y" }}</strong></div>
+
+    {% if page.challenge %}
+    <div class="challenge-card">
+      <div class="card-top-banner">
+        <div class="new-room-pill">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          {{ page.challenge.release | default: "NEW ROOM" }}
+        </div>
+        <span class="release-text">RELEASE</span>
+      </div>
+      <div class="card-body">
+        <div class="card-info">
+          <div class="room-type-badge">{{ page.challenge.type | default: "CHALLENGE ROOM" | upcase }}</div>
+          <div class="room-name">{{ page.challenge.name }}</div>
+          <div class="room-desc">{{ page.challenge.description }}</div>
+        </div>
+        <div class="card-mascot">{{ page.challenge.emoji | default: "🐧" }}</div>
+      </div>
+      <div class="card-stats">
+        <div class="card-stat">
+          <span class="cs-label">Level:</span>
+          <span class="cs-value {% if page.challenge.level == 'Easy' %}green{% elsif page.challenge.level == 'Medium' %}amber{% elsif page.challenge.level == 'Hard' %}red{% endif %}">
+            {{ page.challenge.level | upcase }}
+          </span>
+        </div>
+        <div class="card-stat">
+          <span class="cs-label">Technology:</span>
+          <span class="cs-value">{{ page.challenge.technology | upcase }}</span>
+        </div>
+        <div class="card-stat">
+          <span class="cs-guaranteed">GUARANTEED</span>
+          <span class="cs-label">Points:</span>
+          <span class="cs-value">{{ page.challenge.points }}</span>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="post-body">
+      {{ content }}
+    </div>
+
+    <div class="post-footer">
+      <div class="post-by">By <strong>{{ page.author | default: site.author.name }}</strong></div>
+      <div class="post-readtime">{% if page.read_time %}{{ page.read_time }} min read{% endif %}</div>
+    </div>
+  </main>
+
+  {% include right-sidebar.html %}
+</div>

@@ -1,0 +1,27 @@
+title: YourHandle
+description: "Walkthroughs, writeups and guides!"
+url: "https://yourusername.github.io"
+baseurl: ""
+
+author:
+  name: YourHandle
+  github: https://github.com/yourusername
+  linkedin: https://linkedin.com/in/yourusername
+
+# Build settings
+markdown: kramdown
+permalink: /:title/
+paginate: 10
+paginate_path: "/page/:num/"
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+
+# Tags collection
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
