@@ -1,12 +1,12 @@
-title: YourHandle
+title: vicky-sol4nk1
 description: "Walkthroughs, writeups and guides!"
-url: "https://yourusername.github.io"
+url: "https://vicky-sol4nk1.github.io"
 baseurl: ""
 
 author:
   name: YourHandle
   github: https://github.com/yourusername
-  linkedin: https://linkedin.com/in/yourusername
+  linkedin: https://linkedin.com/in/vickysolanki
 
 # Build settings
 markdown: kramdown
