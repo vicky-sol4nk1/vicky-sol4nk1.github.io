@@ -626,3 +626,207 @@ nav a:hover svg, nav a.active svg { opacity: 0.9; }
   .content-area { margin-left: 0; }
   .right-sidebar { display: none; }
 }
+
+/* ===== HOME PAGE — 5 SECTION LAYOUT ===== */
+
+.section-block {
+  margin-bottom: 10px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #25282f;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #dde0e6;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.sec-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sec-icon svg { width: 14px; height: 14px; }
+
+.soc-icon  { background: #1a2a45; color: #6b9fff; }
+.soc-icon svg { stroke: #6b9fff; }
+
+.red-icon  { background: #2e1a1a; color: #ff6b6b; }
+.red-icon svg { stroke: #ff6b6b; }
+
+.proj-icon { background: #1a2e1a; color: #6ec229; }
+.proj-icon svg { stroke: #6ec229; }
+
+.res-icon  { background: #251a35; color: #b07fff; }
+.res-icon svg { stroke: #b07fff; }
+
+.art-icon  { background: #2e251a; color: #f5a623; }
+.art-icon svg { stroke: #f5a623; }
+
+.see-all-link {
+  font-size: 12px;
+  color: #5a6070;
+  transition: color 0.15s;
+  text-decoration: none;
+}
+.see-all-link:hover { color: #6b9fff; }
+
+.section-divider {
+  height: 1px;
+  background: #25282f;
+  margin: 26px 0;
+}
+
+/* CARD GRID */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 1100px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .card-grid { grid-template-columns: 1fr; }
+}
+
+/* POST CARDS */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 14px 12px;
+  border-radius: 8px;
+  border: 1px solid #25282f;
+  background: #1e2129;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+
+.post-card:hover { background: #22252d; border-color: #35383f; }
+
+.soc-card:hover  { border-color: #1e3a6e; }
+.red-card:hover  { border-color: #5a2020; }
+.proj-card:hover { border-color: #1e4a1e; }
+.res-card:hover  { border-color: #3a2060; }
+.art-card:hover  { border-color: #5a3a10; }
+
+/* CARD BADGE */
+.card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+.card-badge svg { width: 11px; height: 11px; }
+
+.soc-badge  { background: #1a2a45; color: #6b9fff; }
+.soc-badge svg { stroke: #6b9fff; }
+
+.red-badge  { background: #2e1a1a; color: #ff6b6b; }
+.red-badge svg { stroke: #ff6b6b; }
+
+.proj-badge { background: #1a2e1a; color: #6ec229; }
+.proj-badge svg { stroke: #6ec229; }
+
+.res-badge  { background: #251a35; color: #b07fff; }
+.res-badge svg { stroke: #b07fff; }
+
+.art-badge  { background: #2e251a; color: #f5a623; }
+.art-badge svg { stroke: #f5a623; }
+
+/* CARD CONTENT */
+.card-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #dde0e6;
+  line-height: 1.4;
+}
+
+.card-desc {
+  font-size: 12px;
+  color: #6b6f7e;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 2px;
+  align-items: center;
+}
+
+.ctag {
+  font-size: 11px;
+  color: #8a8f9e;
+  border: 1px solid #32353d;
+  border-radius: 3px;
+  padding: 1px 7px;
+}
+
+.diff-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 3px;
+}
+.diff-easy   { color: #6ec229; background: #1a2e1a; }
+.diff-medium { color: #f5a623; background: #2e251a; }
+.diff-hard   { color: #ff6b6b; background: #2e1a1a; }
+
+/* EMPTY PLACEHOLDER CARDS */
+.empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 22px 14px;
+  border-radius: 8px;
+  border: 1px dashed #2a2d35;
+  background: transparent;
+  text-align: center;
+}
+
+.empty-icon { font-size: 1.6rem; opacity: 0.5; }
+.empty-text { font-size: 12.5px; font-weight: 500; color: #4a4f60; line-height: 1.4; }
+.empty-sub  { font-size: 11px; color: #35383f; }
+
+.soc-empty  { border-color: #1e2e45; }
+.red-empty  { border-color: #2e1e1e; }
+.proj-empty { border-color: #1e2e1e; }
+.res-empty  { border-color: #251e35; }
+.art-empty  { border-color: #2e251e; }
+
+/* Section nav active colors */
+nav a[href*="soc"].active    { color: #6b9fff; }
+nav a[href*="redteam"].active{ color: #ff6b6b; }
+nav a[href*="projects"].active{ color: #6ec229; }
+nav a[href*="research"].active{ color: #b07fff; }
+nav a[href*="articles"].active{ color: #f5a623; }
