@@ -3,6 +3,7 @@ layout: post
 title: "HackTheBox: Underpass"
 date: 2024-10-12
 platform: HackTheBox
+section: research
 read_time: 18
 tags: [Easy, Linux, SNMP, Mosh]
 challenge:
