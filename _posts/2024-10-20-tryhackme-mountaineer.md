@@ -3,6 +3,7 @@ layout: post
 title: "TryHackMe: Mountaineer"
 date: 2024-10-20
 platform: TryHackMe
+section: redteam
 read_time: 25
 tags: [Medium, Linux, WordPress, Privesc]
 challenge:
