@@ -15,7 +15,7 @@ Set it to **Public**
 Either drag-and-drop in the GitHub UI, or use git:
 ```bash
 git init
-git add .
+git add . 
 git commit -m "initial blog"
 git remote add origin https://github.com/yourusername/yourusername.github.io.git
 git push -u origin main
