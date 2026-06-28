@@ -6,7 +6,7 @@ permalink: /categories/
 
 <div class="content-body">
   <main class="main-content">
-    <div class="page-heading">Categories</div>
+    <div class="page-heading">Categories</div> 
 
     {% assign all_cats = site.posts | map: "platform" | uniq | sort %}
     {% for cat in all_cats %}
