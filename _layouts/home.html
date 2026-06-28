@@ -4,61 +4,275 @@ layout: default
 
 <div class="content-body">
   <main class="main-content">
-    <div class="page-heading">Latest Writeups</div>
 
-    <ul class="post-list">
-      {% for post in paginator.posts %}
-      <li class="post-item">
-        <div class="post-item-icon">
-          {% if post.platform == "HackTheBox" %}📦
-          {% elsif post.platform == "TryHackMe" %}🧊
-          {% elsif post.platform == "CTF" %}🚩
-          {% else %}📝{% endif %}
+    <!-- ===== SOC SECTION ===== -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="sec-icon soc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          TryHackMe — SOC Challenges
         </div>
-        <div class="post-item-body">
-          <div class="post-item-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </div>
-          <div class="post-item-meta">
-            <span>{{ post.platform | default: "General" }}</span>
-            <span>{{ post.date | date: "%b %d, %Y" }}</span>
-            {% if post.read_time %}<span>{{ post.read_time }} min read</span>{% endif %}
-          </div>
-          {% if post.tags %}
-          <div class="post-item-tags">
-            {% for tag in post.tags limit: 5 %}
-            <a href="{{ '/tags/#' | append: tag | relative_url }}" class="tag-pill">{{ tag }}</a>
-            {% endfor %}
-          </div>
-          {% endif %}
-          {% if post.excerpt %}
-          <div class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</div>
-          {% endif %}
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-
-    <!-- PAGINATION -->
-    {% if paginator.total_pages > 1 %}
-    <div class="pagination">
-      {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | relative_url }}">← Newer</a>
-      {% endif %}
-
-      {% for i in (1..paginator.total_pages) %}
-        {% if i == paginator.page %}
-          <span class="current">{{ i }}</span>
+        <a href="{{ '/categories/#soc' | relative_url }}" class="see-all-link">See all →</a>
+      </div>
+      <div class="card-grid">
+        {% assign soc_posts = site.posts | where: "section", "soc" | limit: 3 %}
+        {% if soc_posts.size > 0 %}
+          {% for post in soc_posts %}
+          <a href="{{ post.url | relative_url }}" class="post-card soc-card">
+            <div class="card-badge soc-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              SOC
+            </div>
+            <div class="card-title">{{ post.title | remove: "TryHackMe: " }}</div>
+            <div class="card-desc">{{ post.excerpt | strip_html | truncate: 90 }}</div>
+            <div class="card-tags">
+              {% for tag in post.tags limit: 3 %}
+              <span class="ctag">{{ tag }}</span>
+              {% endfor %}
+              {% if post.challenge.level %}
+              <span class="diff-badge diff-{{ post.challenge.level | downcase }}">{{ post.challenge.level }}</span>
+              {% endif %}
+            </div>
+          </a>
+          {% endfor %}
         {% else %}
-          <a href="{% if i == 1 %}{{ '/' | relative_url }}{% else %}{{ site.paginate_path | replace: ':num', i | relative_url }}{% endif %}">{{ i }}</a>
+          <div class="empty-card soc-empty">
+            <div class="empty-icon">🛡️</div>
+            <div class="empty-text">SOC writeups coming soon</div>
+            <div class="empty-sub">Wireshark · Splunk · Snort · ELK</div>
+          </div>
+          <div class="empty-card soc-empty">
+            <div class="empty-icon">📡</div>
+            <div class="empty-text">Log Analysis writeup</div>
+            <div class="empty-sub">SIEM · Threat Detection</div>
+          </div>
+          <div class="empty-card soc-empty">
+            <div class="empty-icon">🔍</div>
+            <div class="empty-text">Incident Response writeup</div>
+            <div class="empty-sub">Triage · Forensics</div>
+          </div>
         {% endif %}
-      {% endfor %}
-
-      {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | relative_url }}">Older →</a>
-      {% endif %}
+      </div>
     </div>
-    {% endif %}
+
+    <div class="section-divider"></div>
+
+    <!-- ===== RED TEAM SECTION ===== -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="sec-icon red-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
+          </span>
+          TryHackMe — Red Teaming
+        </div>
+        <a href="{{ '/categories/#redteam' | relative_url }}" class="see-all-link">See all →</a>
+      </div>
+      <div class="card-grid">
+        {% assign red_posts = site.posts | where: "section", "redteam" | limit: 3 %}
+        {% if red_posts.size > 0 %}
+          {% for post in red_posts %}
+          <a href="{{ post.url | relative_url }}" class="post-card red-card">
+            <div class="card-badge red-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              Red Team
+            </div>
+            <div class="card-title">{{ post.title | remove: "TryHackMe: " }}</div>
+            <div class="card-desc">{{ post.excerpt | strip_html | truncate: 90 }}</div>
+            <div class="card-tags">
+              {% for tag in post.tags limit: 3 %}
+              <span class="ctag">{{ tag }}</span>
+              {% endfor %}
+              {% if post.challenge.level %}
+              <span class="diff-badge diff-{{ post.challenge.level | downcase }}">{{ post.challenge.level }}</span>
+              {% endif %}
+            </div>
+          </a>
+          {% endfor %}
+        {% else %}
+          <a href="{{ '/tryhackme-mountaineer/' | relative_url }}" class="post-card red-card">
+            <div class="card-badge red-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              Red Team
+            </div>
+            <div class="card-title">Mountaineer</div>
+            <div class="card-desc">Linux privilege escalation via SUID binary abuse and PATH manipulation on WordPress server.</div>
+            <div class="card-tags">
+              <span class="ctag">Linux</span>
+              <span class="ctag">WordPress</span>
+              <span class="ctag">Privesc</span>
+              <span class="diff-badge diff-medium">Medium</span>
+            </div>
+          </a>
+          <div class="empty-card red-empty">
+            <div class="empty-icon">💀</div>
+            <div class="empty-text">Metasploit writeup coming</div>
+            <div class="empty-sub">Exploitation · Post-Exploitation</div>
+          </div>
+          <div class="empty-card red-empty">
+            <div class="empty-icon">🎣</div>
+            <div class="empty-text">Phishing writeup coming</div>
+            <div class="empty-sub">Social Engineering · GoPhish</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="sec-icon proj-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </span>
+          Projects
+        </div>
+        <a href="{{ '/categories/#projects' | relative_url }}" class="see-all-link">See all →</a>
+      </div>
+      <div class="card-grid">
+        {% assign proj_posts = site.posts | where: "section", "project" | limit: 3 %}
+        {% if proj_posts.size > 0 %}
+          {% for post in proj_posts %}
+          <a href="{{ post.url | relative_url }}" class="post-card proj-card">
+            <div class="card-badge proj-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              Project
+            </div>
+            <div class="card-title">{{ post.title }}</div>
+            <div class="card-desc">{{ post.excerpt | strip_html | truncate: 90 }}</div>
+            <div class="card-tags">
+              {% for tag in post.tags limit: 3 %}<span class="ctag">{{ tag }}</span>{% endfor %}
+            </div>
+          </a>
+          {% endfor %}
+        {% else %}
+          <div class="empty-card proj-empty">
+            <div class="empty-icon">🏗️</div>
+            <div class="empty-text">Home SOC Lab</div>
+            <div class="empty-sub">Wazuh · Elastic · pfSense</div>
+          </div>
+          <div class="empty-card proj-empty">
+            <div class="empty-icon">📊</div>
+            <div class="empty-text">Threat Hunting Dashboard</div>
+            <div class="empty-sub">Kibana · ELK Stack</div>
+          </div>
+          <div class="empty-card proj-empty">
+            <div class="empty-icon">🦠</div>
+            <div class="empty-text">Malware Analysis Sandbox</div>
+            <div class="empty-sub">REMnux · FlareVM</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ===== RESEARCH SECTION ===== -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="sec-icon res-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </span>
+          Research
+        </div>
+        <a href="{{ '/categories/#research' | relative_url }}" class="see-all-link">See all →</a>
+      </div>
+      <div class="card-grid">
+        {% assign res_posts = site.posts | where: "section", "research" | limit: 3 %}
+        {% if res_posts.size > 0 %}
+          {% for post in res_posts %}
+          <a href="{{ post.url | relative_url }}" class="post-card res-card">
+            <div class="card-badge res-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Research
+            </div>
+            <div class="card-title">{{ post.title }}</div>
+            <div class="card-desc">{{ post.excerpt | strip_html | truncate: 90 }}</div>
+            <div class="card-tags">
+              {% for tag in post.tags limit: 3 %}<span class="ctag">{{ tag }}</span>{% endfor %}
+            </div>
+          </a>
+          {% endfor %}
+        {% else %}
+          <a href="{{ '/hackthebox-underpass/' | relative_url }}" class="post-card res-card">
+            <div class="card-badge res-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Research
+            </div>
+            <div class="card-title">SNMP Enumeration &amp; Misconfigurations</div>
+            <div class="card-desc">Deep dive into SNMPv1/v2c exposure, community string attacks, and detection strategies.</div>
+            <div class="card-tags">
+              <span class="ctag">SNMP</span><span class="ctag">Linux</span><span class="ctag">Mosh</span>
+            </div>
+          </a>
+          <div class="empty-card res-empty">
+            <div class="empty-icon">🔐</div>
+            <div class="empty-text">Active Directory Attack Paths</div>
+            <div class="empty-sub">Kerberoasting · Pass-the-Hash</div>
+          </div>
+          <div class="empty-card res-empty">
+            <div class="empty-icon">🌐</div>
+            <div class="empty-text">WordPress Vuln Analysis</div>
+            <div class="empty-sub">Plugin RCE · Admin Escalation</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ===== ARTICLES SECTION ===== -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-title">
+          <span class="sec-icon art-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </span>
+          Articles
+        </div>
+        <a href="{{ '/categories/#articles' | relative_url }}" class="see-all-link">See all →</a>
+      </div>
+      <div class="card-grid">
+        {% assign art_posts = site.posts | where: "section", "article" | limit: 3 %}
+        {% if art_posts.size > 0 %}
+          {% for post in art_posts %}
+          <a href="{{ post.url | relative_url }}" class="post-card art-card">
+            <div class="card-badge art-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Article
+            </div>
+            <div class="card-title">{{ post.title }}</div>
+            <div class="card-desc">{{ post.excerpt | strip_html | truncate: 90 }}</div>
+            <div class="card-tags">
+              {% for tag in post.tags limit: 3 %}<span class="ctag">{{ tag }}</span>{% endfor %}
+            </div>
+          </a>
+          {% endfor %}
+        {% else %}
+          <div class="empty-card art-empty">
+            <div class="empty-icon">📖</div>
+            <div class="empty-text">MITRE ATT&amp;CK for SOC Analysts</div>
+            <div class="empty-sub">Threat Intel · Detection</div>
+          </div>
+          <div class="empty-card art-empty">
+            <div class="empty-icon">⚡</div>
+            <div class="empty-text">Mosh vs SSH: When to Use What</div>
+            <div class="empty-sub">Mosh · SSH · Remote Access</div>
+          </div>
+          <div class="empty-card art-empty">
+            <div class="empty-icon">🚩</div>
+            <div class="empty-text">Getting Started with CTFs</div>
+            <div class="empty-sub">Beginner · Roadmap · Resources</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
   </main>
 
   {% include right-sidebar.html %}
