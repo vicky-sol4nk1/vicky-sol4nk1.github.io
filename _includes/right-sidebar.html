@@ -16,7 +16,7 @@
       {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
       {% for tag in all_tags %}
       <a href="{{ '/tags/#' | append: tag | relative_url }}" class="tag">{{ tag }}</a>
-      {% endfor %}
+      {% endfor %} 
     </div>
   </div>
 
