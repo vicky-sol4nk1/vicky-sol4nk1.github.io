@@ -830,3 +830,45 @@ nav a[href*="redteam"].active{ color: #ff6b6b; }
 nav a[href*="projects"].active{ color: #6ec229; }
 nav a[href*="research"].active{ color: #b07fff; }
 nav a[href*="articles"].active{ color: #f5a623; }
+
+
+/* ===== CARD VISIBILITY FIX ===== */
+
+.post-card {
+  border: 1px solid #3a3f4a !important;
+  background: #22252e !important;
+}
+
+.post-card:hover {
+  background: #272b35 !important;
+  transform: translateY(-2px);
+  transition: all 0.2s;
+}
+
+.soc-card  { border-left: 3px solid #6b9fff !important; }
+.red-card  { border-left: 3px solid #ff6b6b !important; }
+.proj-card { border-left: 3px solid #6ec229 !important; }
+.res-card  { border-left: 3px solid #b07fff !important; }
+.art-card  { border-left: 3px solid #f5a623 !important; }
+
+.card-title {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #e8eaf0 !important;
+}
+
+.card-desc { color: #8a8f9e !important; }
+
+.empty-card {
+  border: 1px dashed #3a3f4a !important;
+  background: #1e2129 !important;
+}
+
+.empty-text { color: #6b7080 !important; font-size: 13px !important; }
+.empty-sub  { color: #4a5060 !important; }
+
+.soc-empty  { border-left: 3px dashed #2a4a8a !important; }
+.red-empty  { border-left: 3px dashed #6a2a2a !important; }
+.proj-empty { border-left: 3px dashed #2a5a2a !important; }
+.res-empty  { border-left: 3px dashed #4a2a7a !important; }
+.art-empty  { border-left: 3px dashed #6a4a1a !important; }
