@@ -4,7 +4,7 @@ title: Tags
 permalink: /tags/
 ---
 
-<div class="content-body">
+<div class="content-body"> 
   <main class="main-content">
     <div class="page-heading">All Tags</div>
     <div class="tags-page-cloud">
